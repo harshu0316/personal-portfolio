@@ -1,0 +1,275 @@
+
+body{
+background: #0e1130;
+width: auto;
+}
+header{
+text-align: center;
+height: 80px;
+margin-top: 0px;
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+input[type="button"]{
+font-size: 20px;
+border: none;
+background: #0e1130;
+color: rgb(240, 240, 240);
+font-family: monospace;
+padding-left: 40px;
+padding-right: 40px;
+outline: #735ae2;
+}
+input[type="button"]:hover{
+opacity: 0.7;
+background-color: #735ae2; 
+  transition: border-radius 0.1s ease-in-out; 
+  border-radius: 10px;
+transform: scale(1.1);
+
+ }
+@import url('https://fonts.cdnfonts.com/css/gyahegi');
+
+a1{
+font-size: 70px;
+color: aliceblue;
+font-weight: 600;
+font-family: 'gyahegi','sans serif';
+}
+a2
+{
+margin-bottom:100px;
+font-size: 70px;
+color: rgb(196, 14, 233);
+font-weight: 600;
+display: flex;
+font-style:gyahegi;
+}
+.start{
+margin-top: 150px;
+margin-left: 150px;
+font-size: 20px;
+color: azure;
+display: inline-block;
+}
+.image{
+display: flexbox;
+display: inline-block;
+padding-left: 440px;
+mix-blend-mode: darken;
+
+}
+.Main{
+text-align: center;
+justify-content: flex-start;
+}
+button[type="btn"]{
+font-size: 20px;
+background-color: #0e1130;
+border-color:rgb(241, 237, 241);
+border-style: double;
+border-radius: 5px;
+color: antiquewhite;
+padding: 20px;
+display: inline-block;
+margin-left: 170px;
+margin-top: 100px;
+
+}
+button[type="btn"]:hover{
+opacity: 0.8;
+background-color: #213550; 
+  transition: border-radius 0.1s ease-in-out; 
+  border-radius: 10px;
+transform: scale(1.1);
+}
+i.fa.fa-linkedin{
+font-size: 20px;
+color: #eeeef0;
+background: #3002f8;
+padding: 15px;
+border-radius: 5px;
+display: inline-block;
+margin: 60px;
+margin-left: 270px;
+box-shadow: #0c0000 4px 4px 4px  4px;
+
+}
+i.fa.fa-github{
+font-size: 45px;
+color: #eeeef0;
+background: #050116;
+padding: 8px;
+border-radius: 5px;
+margin: 60px;
+margin-left: 10px;
+box-shadow: #353434 4px 4px 4px  4px;
+
+}
+i.fa.fa-envelope{
+font-size: 20px;
+color: #eeeef0;
+background: #3002f8;
+padding: 15px;
+border-radius: 5px;
+margin: 60px;
+margin-left: 10px;
+box-shadow: #0c0000 4px 4px 4px  4px;
+}
+
+@keyframes appear{
+from{
+opacity: 0;
+scale: 0.3;}
+to{
+opacity: 0.5;
+scale:1;
+}
+}
+.block{
+animation: appear linear;
+animation-timeline: view();
+animation-range: entry 0 cover 17%;
+
+}
+
+
+
+body1 {
+      color: #ffffff;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+      text-align: center;
+      justify-content: center;
+    }
+.tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      margin-left: 00px;
+      border-radius: 10px;
+      height: 50px;
+      text-align: center;
+    }
+.tab {
+      background-color: #1b263b;
+      padding: 10px 20px;
+      border-radius: 10px;  
+      cursor: pointer;
+      margin-right: 20px;
+    }
+.tab.active {
+      background-color: #415a77; 
+    }
+    .content {
+      display: none;
+    }
+    .content.active {
+      display: block;
+    }
+.skills-grid {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+.skill-box, .info-box {
+      background-color: #1b263b;
+      padding: 10px 15px;
+      border-radius: 5px;
+      width: 150px;
+      display: inline-block;
+      margin-top: 30px;
+    }
+.contain1{
+height: auto;
+width: 450px;
+color: bisque;
+margin: 80px;
+justify-content: center;
+display: inline-block;
+font-family: monospace;
+font-size: 15px;
+}
+.contain2{
+height: 250;
+width: 450px;
+color: bisque;
+border: 1px;
+display:inline-block;
+margin: 80px;
+justify-content: center;
+font-family: monospace;
+font-size: 15px;
+}
+.contain3{
+height: 250;
+width: 450px;
+color: bisque;
+border: 1px;
+display:inline-block;
+margin: 80px;
+justify-content: center;
+font-family: monospace;
+font-size: 15px;
+}
+.social{
+display: flex;
+align-items: flex-start;
+justify-content: left;
+}
+.table{
+align-items: center;
+justify-content: center;
+text-align: center;
+}
+.edu{
+color: aliceblue;
+text-align: center;
+}
+.container{
+height: 110px;
+font-size: 20px;
+color: bisque;
+width: 800px;
+text-align: center;
+background: #213550;
+border: #353434;
+padding:10px;
+margin: 20px;
+align-items: center;
+border-radius: 20px;
+}
+.maincon{
+align-content: center;
+justify-items:center;
+text-align: center;
+}
+footer{
+color: rgb(119, 119, 119);
+margin-top: 100px;
+padding: 20px;
+display: inline-block;
+}
+.typewriter {
+      font-family: monospace;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 2px solid rgb(214, 210, 210);
+      width: 0;
+      animation: typing 3s steps(20, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 20ch }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+  
+  
