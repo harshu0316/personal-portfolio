@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="PORT.CSS">
 <script src="port.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="icon" type="C:\xampp\htdocs\web tech\fevicon.io" sizes="32x32" href="fevicon.io/favicon-32x32.png">
+<link rel="icon" type="C:\xampp\htdocs\web tech\fevicon.io" sizes="16x16" href="fevicon.io/favicon-16x16.png">
 
     <title>Harshad Gawade Portfolio</title>
 </head>
@@ -18,6 +20,40 @@
     <input type="button" name="about" placeholder="about" value="about" type="button" class="scroll-btn" value="go to section" onclick="scrollToDiv()">
     <input type="button" name="projects" placeholder="projects" value="projects" class="scroll-btn" onclick="scrollToprojects()">
     <input type="button" name="education" placeholder="education" value="education" value="go to section"class="scroll-btn" onclick="scrollToeducation()">
+  <style>
+    :root {
+      --bg-color: #0e1130;
+      --text-color: #e0e0e0;
+      --reverse-text-color:#fff;
+      --hcolor:#0e1130;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .light-theme {
+      
+ --bg-color: white;
+      --text-color:#daa520;
+      --inverse-text-color:0e1130;
+    }
+  </style>
+</head>
+<body>
+  <button id="theme-toggle" style="background: var(--hcolor);
+color: var(--inverse-text-color);border: none;font-size: 20px;padding: 10px;margin-left: 50px;cursor: pointer;"><i class="fa fa-moon-o" aria-hidden="true" ></i></button>
+
+  <script>
+    const toggleBtn = document.getElementById('theme-toggle');
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light-theme');
+    });
+  </script>
+</body>
+</html>
 </header>
 <hr>
 <div class="main">
@@ -84,11 +120,11 @@ I'm a FullStack developer passionate about creating engaging and <br>functional 
   </div>
 </div>
 </body1><hr>
-<h1 class="about" id="projects" style="text-align: center; color: aliceblue;">Projects</h1>
+<h1 class="about" id="projects" style="text-align: center; --color:var(--text-color);">Projects</h1>
 
 <div class="block">
 
-<h3 style="color: azure;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;text-align: center;">my recent works</h3>
+<h3 style="--color:var(--text-color): 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;text-align: center;">my recent works</h3>
 <div class="contain1">
 <img src="images/project1.png" alt="" style="height: 250px;">A responsive travel booking platform built with HTML, CSS, and JavaScript. It showcases curated destinations, animated package cards, real-time price updates, and interactive itineraries. Designed to enhance user experience with smooth transitions, hover effects, and form validation for secure inquiries.
 </div>
@@ -103,7 +139,7 @@ I'm a FullStack developer passionate about creating engaging and <br>functional 
 </div>
 <div class="block">
 <div class="edu">
-<h1 class="about" style="text-align: center;color: aliceblue; ">Education</h1>
+<h1 class="about" style="text-align: center;--color:var(--text-color) ">Education</h1>
 <h2>My academic journey</h2>
 <h3>Learn about my training and courses that built my knowledge base.</h3>
 </div>
@@ -118,7 +154,7 @@ Choukul English School Choukul.
 
 Studies focused on mathemathics and science, with a basic foundation in computers.
 </div>
-<i class="fa fa-arrow-down" style="color: azure;" aria-hidden="true"></i><div class="block">
+<i class="fa fa-arrow-down" style="--color:var(--text-color);" aria-hidden="true"></i><div class="block">
 <div class="container">
 2020 - 2021 <br>
 <P></P>
@@ -128,7 +164,7 @@ from Rani Parvati Devi College And Secondary School,sawantwadi
 10+2 degree in commerce , with a focus on finance and project management.
 </div>
 </div>
-<i class="fa fa-arrow-down" style="color: azure;" aria-hidden="true"></i><div class="block">
+<i class="fa fa-arrow-down" style="--color:var(--text-color)" aria-hidden="true"></i><div class="block">
 
 <div class="block">
 <div class="container" id="education">
