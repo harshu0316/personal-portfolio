@@ -11,6 +11,7 @@
   <style>
     /* ----- reset & base ----- */
     * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: #faf9fc;
@@ -28,7 +29,18 @@
       padding: 0 1rem;
     }
 
-    /* ----- header / brand FIXED FOR MOBILE ----- */
+    /* fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ----- header ----- */
     .site-header {
       display: flex;
       flex-wrap: wrap;
@@ -40,7 +52,6 @@
       border-bottom: 1px solid rgba(74, 63, 122, 0.15);
       gap: 0.3rem;
     }
-    
     .brand {
       display: flex;
       align-items: center;
@@ -51,9 +62,7 @@
       text-decoration: none;
       color: inherit;
       flex-shrink: 0;
-      min-width: auto;
     }
-    
     .brand-mark {
       background: #4a3f7a;
       color: white;
@@ -62,12 +71,19 @@
       font-size: 0.9rem;
       flex-shrink: 0;
     }
-    
-    .brand-name {
-      white-space: nowrap;
-      display: inline-block;
+    .brand-name { white-space: nowrap; display: inline-block; }
+    .theme-toggle {
+      background: transparent;
+      border: 1px solid #ccc;
+      border-radius: 30px;
+      padding: 0.3rem 0.8rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: 0.2s;
+      background: white;
+      flex-shrink: 0;
+      margin-left: auto;
     }
-    
     .nav-links {
       display: flex;
       gap: 1.8rem;
@@ -76,70 +92,28 @@
       flex-wrap: wrap;
       align-items: center;
     }
+    .nav-links a { color: #2d2b3a; }
+    .nav-links a:hover { color: #4a3f7a; }
+    .nav-links a.active-nav { color: #4a3f7a; font-weight: 700; }
 
-    /* ----- MOBILE FIX: brand name always visible ----- */
     @media (max-width: 768px) {
-      .site-header {
-        gap: 0.2rem;
-        padding: 0.3rem 0;
-      }
-      
-      .brand {
-        font-size: 0.95rem;
-        flex: 0 0 auto;
-        min-width: 0;
-      }
-      
-      .brand-name {
-        font-size: 0.8rem;
-        display: inline-block !important;
-        white-space: nowrap;
-      }
-      
-      .brand-mark {
-        font-size: 0.65rem;
-        padding: 0.1rem 0.45rem;
-      }
-      
-      .nav-links {
-        order: 3;
-        flex: 1 1 100%;
-        justify-content: center;
-        gap: 0.4rem;
-        padding-top: 0.2rem;
-      }
-      
-      .nav-links a {
-        font-size: 0.65rem;
-        padding: 0.15rem 0.3rem;
-        white-space: nowrap;
-      }
-      
-  
+      .site-header { gap: 0.2rem; padding: 0.3rem 0; }
+      .brand { font-size: 0.95rem; flex: 0 0 auto; }
+      .brand-name { font-size: 0.8rem; }
+      .brand-mark { font-size: 0.65rem; padding: 0.1rem 0.45rem; }
+      .nav-links { order: 3; flex: 1 1 100%; justify-content: center; gap: 0.4rem; padding-top: 0.2rem; }
+      .nav-links a { font-size: 0.65rem; padding: 0.15rem 0.3rem; white-space: nowrap; }
+      .theme-toggle { font-size: 0.9rem; padding: 0.15rem 0.5rem; margin-left: 0; flex-shrink: 0; }
     }
-
     @media (max-width: 480px) {
-      .brand {
-        font-size: 0.8rem;
-      }
-      
-      .brand-name {
-        font-size: 0.7rem !important;
-      }
-      
-      .brand-mark {
-        font-size: 0.55rem;
-        padding: 0.1rem 0.35rem;
-      }
-      
-      .nav-links a {
-        font-size: 0.55rem;
-        padding: 0.1rem 0.2rem;
-      }
-     
+      .brand { font-size: 0.8rem; }
+      .brand-name { font-size: 0.7rem !important; }
+      .brand-mark { font-size: 0.55rem; padding: 0.1rem 0.35rem; }
+      .nav-links a { font-size: 0.55rem; padding: 0.1rem 0.2rem; }
+      .theme-toggle { font-size: 0.75rem; padding: 0.1rem 0.4rem; }
     }
 
-    /* ----- buttons & cards ----- */
+    /* ----- buttons ----- */
     .btn {
       display: inline-block;
       padding: 0.7rem 1.8rem;
@@ -147,21 +121,14 @@
       font-weight: 600;
       border: 2px solid transparent;
       transition: 0.2s;
-      cursor: default;
       background: white;
+      cursor: default;
     }
-    .btn-primary {
-      background: #4a3f7a;
-      color: white;
-      border-color: #4a3f7a;
-    }
+    .btn-primary { background: #4a3f7a; color: white; border-color: #4a3f7a; }
     .btn-primary:hover { background: #2d2360; border-color: #2d2360; color: white; }
-    .btn-secondary {
-      background: transparent;
-      border-color: #4a3f7a;
-      color: #4a3f7a;
-    }
+    .btn-secondary { background: transparent; border-color: #4a3f7a; color: #4a3f7a; }
     .btn-secondary:hover { background: #f0edf9; }
+    .btn-sm { padding: 0.3rem 1rem; font-size: 0.8rem; border-radius: 40px; }
 
     .eyebrow {
       text-transform: uppercase;
@@ -205,7 +172,6 @@
       margin-top: 1rem;
     }
     .contact-row i { margin-right: 0.3rem; }
-
     .hero-tagline {
       display: inline-block;
       background: rgba(74, 63, 122, 0.08);
@@ -217,7 +183,6 @@
       color: #4a3f7a;
       margin-bottom: 0.5rem;
     }
-
     .social-hero {
       display: flex;
       gap: 0.8rem;
@@ -237,7 +202,6 @@
     }
     .social-hero a:hover { background: #4a3f7a; color: white; }
 
-    /* snapshot */
     .hero-snapshot {
       background: #1e1b2b;
       border-radius: 24px;
@@ -247,14 +211,11 @@
       flex-direction: column;
       gap: 1.2rem;
     }
-    .terminal-top {
-      display: flex;
-      gap: 0.4rem;
-    }
+    .terminal-top { display: flex; gap: 0.4rem; }
     .terminal-top span {
       width: 12px; height: 12px; border-radius: 50%;
-      background: #6b5f9c;
       display: inline-block;
+      background: #6b5f9c;
     }
     .terminal-top span:first-child { background: #ff6b6b; }
     .terminal-top span:nth-child(2) { background: #feca57; }
@@ -277,14 +238,14 @@
       padding-top: 1rem;
     }
     .snapshot-list div { text-align: center; }
-    .snapshot-list strong {
-      display: block;
-      font-size: 1.8rem;
-      color: white;
-    }
+    .snapshot-list strong { display: block; font-size: 1.8rem; color: white; }
     .snapshot-list span { font-size: 0.8rem; opacity: 0.7; }
 
-    /* profile cards */
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; padding: 1.5rem; }
+    }
+
+    /* ----- profile / about ----- */
     .profile-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -301,8 +262,31 @@
     }
     .focus-card i { font-size: 2rem; color: #4a3f7a; margin-bottom: 0.5rem; display: inline-block; }
     .focus-card h3 { margin: 0.5rem 0; }
+    @media (max-width: 800px) { .profile-grid { grid-template-columns: 1fr; } }
 
-    /* tabs */
+    /* architecture flow - compact */
+    .arch-flow {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 0.3rem 0.8rem;
+      background: #f6f4fb;
+      padding: 0.7rem 1.2rem;
+      border-radius: 60px;
+      margin: 1.2rem 0;
+      font-size: 0.85rem;
+    }
+    .arch-flow span {
+      background: white;
+      padding: 0.15rem 1rem;
+      border-radius: 40px;
+      font-weight: 500;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+    .arch-flow i { color: #4a3f7a; font-size: 0.7rem; }
+
+    /* ----- skills ----- */
     .tabs {
       display: flex;
       gap: 0.5rem;
@@ -319,10 +303,7 @@
       transition: 0.15s;
       color: #2d2360;
     }
-    .tab.active {
-      background: #4a3f7a;
-      color: white;
-    }
+    .tab.active { background: #4a3f7a; color: white; }
     .tab-panels { background: white; padding: 1.8rem; border-radius: 28px; }
     .skill-grid { display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; }
     .skill-grid span {
@@ -333,7 +314,7 @@
     }
     .tab-panel[hidden] { display: none; }
 
-    /* experience */
+    /* ----- experience ----- */
     .experience-card {
       background: white;
       border-radius: 28px;
@@ -366,10 +347,10 @@
       font-weight: 500;
     }
 
-    /* projects */
+    /* ----- projects ----- */
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 2rem;
       margin-top: 1.5rem;
     }
@@ -378,24 +359,35 @@
       border-radius: 28px;
       overflow: hidden;
       box-shadow: 0 8px 24px rgba(0,0,0,0.03);
-      transition: 0.2s;
+      transition: 0.3s;
       border: 1px solid #f0edf9;
     }
-    .project-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
+    .project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.08); }
     .project-screenshot {
       width: 100%;
-      height: 140px;
-      background: #2d2360;
+      height: 170px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #b3a6d9;
-      font-size: 0.8rem;
-      border-radius: 12px 12px 0 0;
+      font-size: 0.85rem;
       background-size: cover;
       background-position: center;
+      background-color: #2d2360;
+      color: #b3a6d9;
+      position: relative;
     }
-    .project-screenshot i { font-size: 2.4rem; opacity: 0.6; }
+    .project-screenshot .overlay-label {
+      position: absolute;
+      bottom: 10px;
+      right: 14px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 0.1rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.65rem;
+      letter-spacing: 0.3px;
+    }
+    .project-screenshot i { font-size: 2.6rem; opacity: 0.5; }
     .project-body { padding: 1.5rem; }
     .project-meta {
       display: flex;
@@ -405,55 +397,95 @@
       color: #6b5f9c;
       margin-bottom: 0.6rem;
     }
-    .project-body ul { margin: 0.8rem 0 1rem 1.2rem; font-size: 0.95rem; }
-    .project-link {
+    .project-body ul { margin: 0.6rem 0 0.8rem 1.2rem; font-size: 0.92rem; }
+    .project-body ul li { margin-bottom: 0.2rem; }
+    .tech-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.6rem 0 0.8rem;
+    }
+    .tech-badges span {
+      background: #f0edf9;
+      padding: 0.05rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: #2d2360;
+    }
+    .project-metrics {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      background: #f6f4fb;
+      padding: 0.4rem 1rem;
+      border-radius: 60px;
+      margin: 0.6rem 0 0.8rem;
+      font-size: 0.8rem;
+    }
+    .project-metrics strong { color: #4a3f7a; }
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.6rem;
+    }
+    .project-links a {
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 0.3rem;
+      font-size: 0.85rem;
+      background: #f0edf9;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      transition: 0.2s;
     }
+    .project-links a:hover { background: #4a3f7a; color: white; }
 
-    /* education */
+    /* ----- education ----- */
     .education-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
       margin: 2rem 0;
     }
-    .timeline-item { background: white; padding: 1.5rem; border-radius: 28px; border-left: 6px solid #4a3f7a; }
-    .timeline-item span:first-child { font-size: 0.8rem; color: #6b5f9c; font-weight: 600; display: block; }
-    .growth-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      background: #f6f4fb;
-      border-radius: 60px;
-      padding: 1.2rem;
-      margin-top: 1.5rem;
+    .timeline-item {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 28px;
+      border-left: 6px solid #4a3f7a;
     }
-    .growth-strip div { text-align: center; }
+    .timeline-item span:first-child { font-size: 0.8rem; color: #6b5f9c; font-weight: 600; display: block; }
 
-    .architecture-flow {
+    /* compact stats strip - replaces pill bars */
+    .stats-compact {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center;
-      gap: 0.5rem 1.2rem;
+      gap: 1.2rem 2.5rem;
       background: #f6f4fb;
-      padding: 1.2rem 1.5rem;
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      margin: 1.2rem 0;
+    }
+    .stats-compact div { text-align: center; font-size: 0.9rem; }
+    .stats-compact strong { color: #4a3f7a; display: block; font-size: 1.1rem; }
+
+    .growth-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.2rem 2rem;
+      background: #f6f4fb;
+      padding: 0.7rem 1.5rem;
       border-radius: 60px;
       margin: 1.5rem 0;
     }
-    .architecture-flow span {
-      background: white;
-      padding: 0.3rem 1.2rem;
-      border-radius: 40px;
-      font-weight: 500;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-    .architecture-flow i { color: #4a3f7a; }
+    .growth-strip div { text-align: center; font-size: 0.9rem; }
+    .growth-strip strong { display: block; color: #2d2360; }
 
-    /* footer */
+    /* ----- footer ----- */
     .site-footer {
       text-align: center;
       border-top: 1px solid rgba(74, 63, 122, 0.1);
@@ -468,8 +500,14 @@
       margin: 1.5rem 0;
     }
     .copyright { opacity: 0.6; font-size: 0.85rem; margin-top: 1.5rem; }
-    .footer-built { font-size: 0.8rem; opacity: 0.5; margin-top: 0.5rem; }
+    .footer-built { font-size: 0.8rem; opacity: 0.5; margin-top: 0.3rem; }
+    .response-time {
+      font-size: 0.85rem;
+      opacity: 0.7;
+      margin-top: 0.2rem;
+    }
 
+    /* back to top */
     .back-to-top {
       position: fixed;
       bottom: 2rem;
@@ -484,29 +522,72 @@
       justify-content: center;
       font-size: 1.4rem;
       box-shadow: 0 4px 14px rgba(74, 63, 122, 0.3);
-      transition: 0.2s;
+      transition: 0.3s;
       opacity: 0;
       visibility: hidden;
       cursor: pointer;
       border: none;
+      z-index: 999;
     }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { transform: translateY(-4px); }
+
+    /* dark theme */
+    body.dark {
+      background: #13101e;
+      color: #ece8f5;
+    }
+    body.dark .site-header { border-bottom-color: #3a364a; }
+    body.dark .hero { background: #1e1b2b; }
+    body.dark .focus-card { background: #1e1b2b; border-color: #2d2360; }
+    body.dark .tab-panels { background: #1e1b2b; }
+    body.dark .skill-grid span { background: #2d2360; color: #e4e0f0; }
+    body.dark .experience-card { background: #1e1b2b; border-left-color: #8a7abf; }
+    body.dark .project-card { background: #1e1b2b; border-color: #2d2360; }
+    body.dark .project-card:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    body.dark .timeline-item { background: #1e1b2b; }
+    body.dark .growth-strip { background: #1e1b2b; }
+    body.dark .contact-row { background: #2d2360; color: white; }
+    body.dark .contact-row a { color: #d4ccf0; }
+    body.dark .tab { background: #2d2360; color: white; }
+    body.dark .tab.active { background: #8a7abf; }
+    body.dark .btn-secondary { border-color: #8a7abf; color: #d4ccf0; }
+    body.dark .btn-secondary:hover { background: #2d2360; }
+    body.dark .social-hero a { background: #2d2360; color: #d4ccf0; }
+    body.dark .social-hero a:hover { background: #4a3f7a; }
+    body.dark .arch-flow { background: #1e1b2b; }
+    body.dark .arch-flow span { background: #2d2360; color: #e4e0f0; }
+    body.dark .hero-tagline { background: rgba(138, 122, 191, 0.2); color: #b3a6d9; }
+    body.dark .theme-toggle { background: #2d2360; border-color: #4a3f7a; color: white; }
+    body.dark .stats-compact { background: #1e1b2b; }
+    body.dark .stats-compact strong { color: #b3a6d9; }
+    body.dark .project-metrics { background: #1e1b2b; }
+    body.dark .tech-badges span { background: #2d2360; color: #e4e0f0; }
+    body.dark .project-links a { background: #2d2360; color: #d4ccf0; }
+    body.dark .project-links a:hover { background: #4a3f7a; color: white; }
+    body.dark .nav-links a { color: #d4ccf0; }
+    body.dark .nav-links a:hover { color: #b3a6d9; }
+    body.dark .nav-links a.active-nav { color: #b3a6d9; }
 
     @media (max-width: 800px) {
-      .hero { grid-template-columns: 1fr; }
-      .profile-grid { grid-template-columns: 1fr; }
+      .project-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <!-- Back to Top button -->
+
+  <!-- Back to Top -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa fa-arrow-up"></i></button>
 
-  <!-- HEADER - FIXED FOR MOBILE -->
+  <!-- HEADER -->
   <header class="site-header" id="top">
     <a class="brand" href="#home" aria-label="Harshad Gawade home">
       <span class="brand-mark">HG</span>
       <span class="brand-name">Harshad Gawade</span>
     </a>
+    <button class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
+      <i class="fa fa-moon-o" aria-hidden="true"></i>
+    </button>
     <nav class="nav-links" aria-label="Primary navigation">
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
@@ -519,23 +600,18 @@
 
   <main>
     <!-- HERO -->
-    <section class="hero section-band" id="home">
+    <section class="hero section-band fade-in" id="home">
       <div class="hero-copy-block">
-        <p class="hero-tagline"><i class="fa fa-bullhorn" aria-hidden="true"></i> Available for Java Developer | Spring Boot Developer | Backend Developer roles</p>
+        <p class="hero-tagline"><i class="fa fa-bullhorn" aria-hidden="true"></i> Available for Java Developer | Spring Boot | Backend roles</p>
         <h1>Java Full Stack Developer | Spring Boot | REST APIs | BCA Graduate</h1>
         <p class="hero-copy">
-          Entry-level developer with hands‑on experience in Core Java, Spring Boot, REST API development,
-          Spring Data JPA, Hibernate, MySQL, and React basics. I build clean, layered backends with
-          reliable database operations and testable API flows. Actively seeking Java Developer roles.
+          Java Full Stack Developer specializing in Spring Boot, REST APIs, MySQL, and layered backend architecture.
+          Passionate about building scalable backend applications and actively seeking entry-level software engineering opportunities.
         </p>
 
-        <div class="hero-actions" aria-label="Primary actions">
-          <a class="btn btn-primary" href="Gawade_Harshad_Resume.pdf">
-            Download Resume <i class="fa fa-download" aria-hidden="true"></i>
-          </a>
-          <a class="btn btn-secondary" href="#projects">
-            View Projects <i class="fa fa-code" aria-hidden="true"></i>
-          </a>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="Gawade_Harshad_Resume.pdf">Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
+          <a class="btn btn-secondary" href="#projects">View Projects <i class="fa fa-code" aria-hidden="true"></i></a>
         </div>
 
         <div class="social-hero">
@@ -544,23 +620,23 @@
           <a href="mailto:harshadgawade997@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</a>
         </div>
 
-        <div class="contact-row" aria-label="Quick contact">
+        <div class="contact-row">
           <a href="tel:+919404214920"><i class="fa fa-phone" aria-hidden="true"></i> +91 9404214920</a>
           <a href="mailto:harshadgawade997@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> harshadgawade997@gmail.com</a>
           <span><i class="fa fa-map-marker" aria-hidden="true"></i> Hinjewadi Phase 1, Pune</span>
         </div>
 
-        <div class="metrics-strip" style="display:flex; flex-wrap:wrap; gap:1.5rem 2.5rem; margin-top:1.2rem; padding:0.5rem 0; border-top:1px solid #e0dcee;">
-          <div><strong style="color:#4a3f7a;">12+</strong> REST APIs built</div>
-          <div><strong style="color:#4a3f7a;">JWT</strong> Authentication</div>
-          <div><strong style="color:#4a3f7a;">5+</strong> Database tables (avg.)</div>
-          <div><strong style="color:#4a3f7a;">30+</strong> LeetCode problems</div>
+        <div class="stats-compact" style="margin-top:1rem; border-top:1px solid #e0dcee; border-radius:0; background:transparent; padding:0.5rem 0;">
+          <div><strong>12+</strong> REST APIs</div>
+          <div><strong>JWT</strong> Auth</div>
+          <div><strong>5+</strong> DB tables</div>
+          <div><strong>30+</strong> LeetCode</div>
         </div>
       </div>
 
-      <aside class="hero-snapshot" aria-label="Resume snapshot">
+      <aside class="hero-snapshot">
         <div class="terminal-top"><span></span><span></span><span></span></div>
-        <div class="code-window" aria-hidden="true">
+        <div class="code-window">
           <p><span class="token-blue">@SpringBootApplication</span></p>
           <p><span class="token-green">class</span> HarshadPortfolio {</p>
           <p>&nbsp;&nbsp;role = <span class="token-amber">"Java Full Stack Developer"</span>;</p>
@@ -569,15 +645,15 @@
           <p>}</p>
         </div>
         <div class="snapshot-list">
-          <div><strong>8</strong><span>REST endpoints tested</span></div>
+          <div><strong>8</strong><span>endpoints tested</span></div>
           <div><strong>8.2</strong><span>BCA CGPA</span></div>
-          <div><strong>3</strong><span>resume-backed projects</span></div>
+          <div><strong>3</strong><span>projects</span></div>
         </div>
       </aside>
     </section>
 
     <!-- ABOUT -->
-    <section class="section-band profile-section" id="about">
+    <section class="section-band profile-section fade-in" id="about">
       <div class="section-heading">
         <p class="eyebrow">About</p>
         <h2>Java · Spring Boot · REST APIs · Backend Focus</h2>
@@ -586,7 +662,7 @@
         <article class="focus-card">
           <i class="fa fa-sitemap" aria-hidden="true"></i>
           <h3>Layered MVC Architecture</h3>
-          <p>Entity, Repository, Service, Controller – clean separation for maintainable Spring Boot apps.</p>
+          <p>Entity, Repository, Service, Controller – clean separation for maintainable Spring Boot applications.</p>
         </article>
         <article class="focus-card">
           <i class="fa fa-database" aria-hidden="true"></i>
@@ -595,7 +671,8 @@
         </article>
       </div>
 
-      <div class="architecture-flow">
+      <!-- Architecture flow - compact -->
+      <div class="arch-flow">
         <span>Browser</span> <i class="fa fa-arrow-right"></i>
         <span>Controller</span> <i class="fa fa-arrow-right"></i>
         <span>Service</span> <i class="fa fa-arrow-right"></i>
@@ -603,8 +680,8 @@
         <span>MySQL</span>
       </div>
 
-      <div style="max-width:760px; margin:1.2rem auto 0; background:#f6f4fb; padding:1.2rem 1.8rem; border-radius:40px;">
-        <p style="font-size:1rem; text-align:center; color:#2d2360;">
+      <div style="max-width:760px; margin:0.8rem auto 0; background:#f6f4fb; padding:0.8rem 1.5rem; border-radius:60px; text-align:center;">
+        <p style="font-size:0.95rem; color:#2d2360;">
           <i class="fa fa-bullseye" aria-hidden="true" style="margin-right:0.6rem;"></i>
           Seeking entry‑level Java Full Stack Developer roles – backend, REST APIs, and Spring Boot.
         </p>
@@ -612,54 +689,56 @@
     </section>
 
     <!-- SKILLS -->
-    <section class="section-band skills-section" id="skills">
+    <section class="section-band skills-section fade-in" id="skills">
       <div class="section-heading">
         <p class="eyebrow">Technical Skills</p>
-        <h2>Categorised tech stack with hover details.</h2>
+        <h2>Categorised tech stack</h2>
       </div>
 
-      <div class="tabs" role="tablist" aria-label="Skill categories">
+      <div class="tabs" role="tablist">
         <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="lang-panel" id="lang-tab" data-tab="lang-panel">Languages</button>
         <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="backend-panel" id="backend-tab" data-tab="backend-panel">Backend</button>
         <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="frontend-panel" id="frontend-tab" data-tab="frontend-panel">Frontend</button>
         <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="db-panel" id="db-tab" data-tab="db-panel">Database</button>
-        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tools-panel" id="tools-tab" data-tab="tools-panel">Tools &amp; Concepts</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tools-panel" id="tools-tab" data-tab="tools-panel">Tools</button>
       </div>
 
       <div class="tab-panels">
-        <div class="tab-panel active" id="lang-panel" role="tabpanel" aria-labelledby="lang-tab">
+        <div class="tab-panel active" id="lang-panel" role="tabpanel">
           <div class="skill-grid">
             <span>Core Java</span><span>OOP</span><span>Exception Handling</span><span>Multithreading</span><span>SQL</span>
           </div>
         </div>
-        <div class="tab-panel" id="backend-panel" role="tabpanel" aria-labelledby="backend-tab" hidden>
+        <div class="tab-panel" id="backend-panel" role="tabpanel" hidden>
           <div class="skill-grid">
-            <span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate</span><span>REST APIs</span><span>Spring Security (JWT)</span><span>JDBC</span>
+            <span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate</span>
+            <span>REST APIs</span><span>Spring Security (JWT)</span><span>JDBC</span>
           </div>
         </div>
-        <div class="tab-panel" id="frontend-panel" role="tabpanel" aria-labelledby="frontend-tab" hidden>
+        <div class="tab-panel" id="frontend-panel" role="tabpanel" hidden>
           <div class="skill-grid">
             <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React Basics</span><span>Thymeleaf</span><span>PHP</span>
           </div>
         </div>
-        <div class="tab-panel" id="db-panel" role="tabpanel" aria-labelledby="db-tab" hidden>
+        <div class="tab-panel" id="db-panel" role="tabpanel" hidden>
           <div class="skill-grid">
             <span>MySQL</span><span>H2 Database</span><span>CRUD Operations</span><span>Entity Mapping</span><span>Query Methods</span>
           </div>
         </div>
-        <div class="tab-panel" id="tools-panel" role="tabpanel" aria-labelledby="tools-tab" hidden>
+        <div class="tab-panel" id="tools-panel" role="tabpanel" hidden>
           <div class="skill-grid">
-            <span>Maven</span><span>Lombok</span><span>Postman</span><span>Git/GitHub</span><span>IntelliJ IDEA</span><span>Qodana</span><span>Microservices (concepts)</span>
+            <span>Maven</span><span>Lombok</span><span>Postman</span><span>Git/GitHub</span>
+            <span>IntelliJ IDEA</span><span>Qodana</span><span>Microservices (concepts)</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- EXPERIENCE -->
-    <section class="section-band experience-section" id="experience">
+    <section class="section-band experience-section fade-in" id="experience">
       <div class="section-heading">
         <p class="eyebrow">Experience</p>
-        <h2>Project‑based Java development exposure.</h2>
+        <h2>Project‑based Java development exposure</h2>
       </div>
       <article class="experience-card">
         <div class="experience-main">
@@ -671,99 +750,141 @@
             Implemented backend logic, form handling, SQL queries, and database operations.
             Improved page functionality and debugged workflows across 5+ modules.
           </p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.8rem 1.8rem; margin-top:0.8rem; background:#f0edf9; padding:0.5rem 1.2rem; border-radius:60px;">
+          <div style="display:flex; flex-wrap:wrap; gap:0.6rem 1.5rem; margin-top:0.8rem; background:#f0edf9; padding:0.4rem 1.2rem; border-radius:60px;">
             <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> 12+ REST APIs</span>
-            <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> Layered MVC architecture</span>
-            <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> MySQL integration</span>
-            <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> Debugged production issues</span>
+            <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> Layered MVC</span>
+            <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> MySQL</span>
+            <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> Debugging</span>
           </div>
         </div>
-        <div class="experience-stack" aria-label="Internship tech stack">
+        <div class="experience-stack">
           <span>Java</span><span>Thymeleaf</span><span>HTML</span><span>CSS</span><span>MySQL</span><span>JDBC</span>
         </div>
       </article>
     </section>
 
     <!-- PROJECTS -->
-    <section class="section-band projects-section" id="projects">
+    <section class="section-band projects-section fade-in" id="projects">
       <div class="section-heading">
         <p class="eyebrow">Featured Projects</p>
-        <h2>Java‑focused projects with real backend scope.</h2>
+        <h2>Java‑focused projects with real backend scope</h2>
       </div>
 
       <div class="project-grid">
+
+        <!-- Project 1: Business Management -->
         <article class="project-card">
-          <div class="project-screenshot" style="background-image: url('https://via.placeholder.com/600x140/2d2360/8a7abf?text=Business+Management+System');">
+          <div class="project-screenshot" style="background: linear-gradient(135deg, #1a1430, #2d2360);">
             <i class="fa fa-briefcase" aria-hidden="true"></i>
+            <span class="overlay-label">Admin Panel</span>
           </div>
           <div class="project-body">
             <div class="project-meta"><span>Dec 2025 – Feb 2026</span><span>Spring Security</span><span>MySQL</span></div>
             <h3>Business Management System</h3>
             <p>Spring Boot + REST APIs + Spring Security (JWT) + MySQL. Role‑based access for admin, customer, staff.</p>
+
+            <div class="tech-badges">
+              <span>Spring Boot</span><span>Spring Security</span><span>JWT</span><span>MySQL</span><span>Hibernate</span><span>Maven</span>
+            </div>
+
+            <div class="project-metrics">
+              <span><strong>8</strong> REST APIs</span>
+              <span><strong>JWT</strong> Auth</span>
+              <span><strong>Role</strong> Based Access</span>
+              <span><strong>5</strong> DB Tables</span>
+              <span><strong>MVC</strong> Architecture</span>
+            </div>
+
             <ul>
-              <li><strong>Tech:</strong> Spring Boot, Spring Security, JWT, MySQL, Maven</li>
-              <li><strong>APIs:</strong> 8+ REST endpoints (CRUD for products, orders, users)</li>
-              <li><strong>DB:</strong> 5 tables (user, role, product, order, order_item)</li>
-              <li><strong>Auth:</strong> JWT authentication with role‑based access</li>
-              <li><strong>Challenge:</strong> implemented custom UserDetailsService</li>
+              <li>CRUD for products, orders, users</li>
+              <li>Custom UserDetailsService for auth</li>
+              <li>Admin / Customer / Staff panels</li>
             </ul>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:0.6rem;">
-              <a class="project-link" href="https://github.com/harshu0316/Business_Management_Project-updated" target="_blank">GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>
-              <span style="opacity:0.5; font-size:0.8rem;"><i class="fa fa-link" aria-hidden="true"></i> Live Demo (coming soon)</span>
+
+            <div class="project-links">
+              <a href="https://github.com/harshu0316/Business_Management_Project-updated" target="_blank"><i class="fa fa-github"></i> Source Code</a>
+              <a href="#" style="opacity:0.6;cursor:default;"><i class="fa fa-play-circle"></i> Demo (soon)</a>
             </div>
           </div>
         </article>
 
+        <!-- Project 2: Quiz Application -->
         <article class="project-card">
-          <div class="project-screenshot" style="background-image: url('https://via.placeholder.com/600x140/2d2360/8a7abf?text=Quiz+Application');">
+          <div class="project-screenshot" style="background: linear-gradient(135deg, #1a1430, #3a2a6a);">
             <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <span class="overlay-label">Quiz Dashboard</span>
           </div>
           <div class="project-body">
             <div class="project-meta"><span>Apr 2026</span><span>Spring Boot 3.2</span><span>MySQL</span></div>
             <h3>Spring Boot Quiz Application</h3>
-            <p>RESTful quiz app with layered MVC (Entity–Repository–Service–Controller). Admin panel + configurable quizzes.</p>
+            <p>RESTful quiz app with layered MVC. Admin panel + configurable quizzes with category &amp; difficulty.</p>
+
+            <div class="tech-badges">
+              <span>Spring Boot</span><span>Spring Data JPA</span><span>Hibernate</span><span>MySQL</span><span>Maven</span><span>Qodana</span>
+            </div>
+
+            <div class="project-metrics">
+              <span><strong>10+</strong> REST APIs</span>
+              <span><strong>4</strong> DB Tables</span>
+              <span><strong>Admin</strong> Panel</span>
+              <span><strong>Scoring</strong> Logic</span>
+            </div>
+
             <ul>
-              <li><strong>Tech:</strong> Spring Boot, Spring Data JPA, Hibernate, MySQL, Maven</li>
-              <li><strong>APIs:</strong> 10+ endpoints (admin login, question CRUD, quiz generation, submission)</li>
-              <li><strong>Features:</strong> choose category, difficulty, number of questions; answer validation &amp; scoring</li>
-              <li><strong>DB:</strong> 4 tables (question, quiz, result, admin)</li>
-              <li><strong>Quality:</strong> used JetBrains Qodana for code improvements</li>
+              <li>Question CRUD, quiz generation, submission</li>
+              <li>Choose category, difficulty, question count</li>
+              <li>Used Qodana for code quality</li>
             </ul>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:0.6rem;">
-              <a class="project-link" href="https://github.com/harshu0316/BrainBuzz_QuizApp" target="_blank">GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>
-              <span style="opacity:0.5; font-size:0.8rem;"><i class="fa fa-link" aria-hidden="true"></i> Live Demo (coming soon)</span>
+
+            <div class="project-links">
+              <a href="https://github.com/harshu0316/BrainBuzz_QuizApp" target="_blank"><i class="fa fa-github"></i> Source Code</a>
+              <a href="#" style="opacity:0.6;cursor:default;"><i class="fa fa-play-circle"></i> Demo (soon)</a>
             </div>
           </div>
         </article>
 
+        <!-- Project 3: Gym Management -->
         <article class="project-card">
-          <div class="project-screenshot" style="background-image: url('https://via.placeholder.com/600x140/2d2360/8a7abf?text=Gym+Management');">
+          <div class="project-screenshot" style="background: linear-gradient(135deg, #1a1430, #4a2a5a);">
             <i class="fa fa-heartbeat" aria-hidden="true"></i>
+            <span class="overlay-label">Member Dashboard</span>
           </div>
           <div class="project-body">
             <div class="project-meta"><span>Sep 2025 – Oct 2025</span><span>PHP</span><span>MySQL</span></div>
             <h3>Gym Management System</h3>
-            <p>Web application for gym operations: member registrations, membership plans, payment tracking, attendance, trainer assignments.</p>
+            <p>Web application for gym operations: memberships, payments, attendance, trainer assignments.</p>
+
+            <div class="tech-badges">
+              <span>PHP</span><span>MySQL</span><span>HTML</span><span>CSS</span>
+            </div>
+
+            <div class="project-metrics">
+              <span><strong>3</strong> User Roles</span>
+              <span><strong>6</strong> DB Tables</span>
+              <span><strong>Login</strong> Panels</span>
+            </div>
+
             <ul>
-              <li><strong>Tech:</strong> PHP, MySQL, HTML, CSS</li>
-              <li><strong>Modules:</strong> Admin, Trainer, Member – separate login panels</li>
-              <li><strong>DB:</strong> 6 tables (members, trainers, attendance, payments, plans, users)</li>
-              <li><strong>Workflow:</strong> real gym management needs (registrations, renewals, daily attendance)</li>
+              <li>Admin, Trainer, Member panels</li>
+              <li>Payment tracking &amp; attendance</li>
+              <li>Real gym workflow design</li>
             </ul>
-            <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:0.6rem;">
-              <a class="project-link" href="https://github.com/harshu0316/orca_gym-services" target="_blank">GitHub <i class="fa fa-external-link" aria-hidden="true"></i></a>
-              <span style="opacity:0.5; font-size:0.8rem;"><i class="fa fa-link" aria-hidden="true"></i> Live Demo (coming soon)</span>
+
+            <div class="project-links">
+              <a href="https://github.com/harshu0316/orca_gym-services" target="_blank"><i class="fa fa-github"></i> Source Code</a>
+              <a href="#" style="opacity:0.6;cursor:default;"><i class="fa fa-play-circle"></i> Demo (soon)</a>
             </div>
           </div>
         </article>
+
       </div>
     </section>
 
     <!-- EDUCATION -->
-    <section class="section-band education-section" id="education">
+    <section class="section-band education-section fade-in" id="education">
       <div class="section-heading">
         <p class="eyebrow">Education &amp; Credentials</p>
-        <h2>Academic background + certifications + coding practice.</h2>
+        <h2>Academic background + certifications + coding practice</h2>
       </div>
 
       <div class="education-grid">
@@ -772,9 +893,10 @@
         <article class="timeline-item"><span>Jun 2019 – Mar 2020</span><h3>S.S.C. (10th)</h3><p>Choukul English School, Sawantwadi. 86%</p></article>
       </div>
 
-      <div style="background:white; border-radius:28px; padding:1.2rem 1.8rem; margin:1.2rem 0; box-shadow:0 4px 12px rgba(0,0,0,0.02); border-left:6px solid #4a3f7a;">
+      <!-- Currently Learning -->
+      <div style="background:white; border-radius:28px; padding:1rem 1.5rem; margin:1.2rem 0; box-shadow:0 4px 12px rgba(0,0,0,0.02); border-left:6px solid #4a3f7a;">
         <p style="font-weight:600; color:#2d2360;"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Currently Learning</p>
-        <div style="display:flex; flex-wrap:wrap; gap:0.5rem 1.8rem; margin-top:0.3rem;">
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem 1.8rem; margin-top:0.2rem;">
           <span><i class="fa fa-shield" style="color:#4a3f7a;"></i> Spring Security</span>
           <span><i class="fa fa-cubes" style="color:#4a3f7a;"></i> Microservices</span>
           <span><i class="fa fa-docker" style="color:#4a3f7a;"></i> Docker</span>
@@ -782,13 +904,15 @@
         </div>
       </div>
 
-      <div style="display:flex; flex-wrap:wrap; gap:1.2rem 2.5rem; justify-content:center; background:#f6f4fb; padding:1rem 1.5rem; border-radius:60px; margin:1.5rem 0;">
-        <div><i class="fa fa-certificate" style="color:#4a3f7a; margin-right:0.4rem;"></i> <strong>Java Intermediate</strong> – SoloLearn</div>
-        <div><i class="fa fa-certificate" style="color:#4a3f7a; margin-right:0.4rem;"></i> <strong>SQL</strong> – Great Learning</div>
-        <div><i class="fa fa-code" style="color:#4a3f7a; margin-right:0.4rem;"></i> <strong>LeetCode</strong> <a href="https://leetcode.com/u/harshu0316/" target="_blank">30+ problems</a></div>
-        <div><i class="fa fa-trophy" style="color:#4a3f7a; margin-right:0.4rem;"></i> Hackathons (intercollegiate)</div>
+      <!-- Certifications + Coding (compact) -->
+      <div class="growth-strip">
+        <div><strong><i class="fa fa-certificate" style="color:#4a3f7a;"></i> Java Intermediate</strong><span>SoloLearn</span></div>
+        <div><strong><i class="fa fa-certificate" style="color:#4a3f7a;"></i> SQL</strong><span>Great Learning</span></div>
+        <div><strong><i class="fa fa-code" style="color:#4a3f7a;"></i> LeetCode</strong><span><a href="https://leetcode.com/u/harshu0316/" target="_blank" style="color:#4a3f7a;">30+ problems</a></span></div>
+        <div><strong><i class="fa fa-trophy" style="color:#4a3f7a;"></i> Hackathons</strong><span>Intercollegiate</span></div>
       </div>
 
+      <!-- GitHub heatmap (compact) -->
       <div style="background:white; border-radius:28px; padding:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02);">
         <p style="font-size:0.9rem; color:#4a3f7a; font-weight:600;"><i class="fa fa-github" aria-hidden="true"></i> GitHub Activity</p>
         <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:center;">
@@ -805,26 +929,28 @@
           <span style="display:inline-block; width:14px; height:14px; background:#8a7abf; border-radius:3px;"></span>
           <span style="display:inline-block; width:14px; height:14px; background:#4a3f7a; border-radius:3px;"></span>
         </div>
-        <p style="font-size:0.75rem; color:#6b5f9c; margin-top:0.4rem;">50+ contributions in the last year</p>
+        <p style="font-size:0.75rem; color:#6b5f9c; margin-top:0.3rem;">50+ contributions in the last year</p>
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="site-footer section-band" id="contact">
+  <footer class="site-footer section-band fade-in" id="contact">
     <div>
       <p class="eyebrow">Contact</p>
-      <h2>Ready for Java Developer opportunities.</h2>
+      <h2>Ready for Java Developer opportunities</h2>
       <p>Open to entry-level Java Full Stack Developer roles, internships, and backend-focused projects.</p>
+      <p class="response-time"><i class="fa fa-clock-o" aria-hidden="true"></i> Response time: Usually within 24 hours.</p>
     </div>
 
-    <div style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin:1.5rem 0;">
+    <div class="footer-actions">
       <a class="btn btn-primary" href="Gawade_Harshad_Resume.pdf">Download Resume <i class="fa fa-download" aria-hidden="true"></i></a>
       <a class="btn btn-secondary" href="mailto:harshadgawade997@gmail.com">Email Me <i class="fa fa-paper-plane-o" aria-hidden="true"></i></a>
       <a class="btn btn-secondary" href="https://github.com/harshu0316/" target="_blank">GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
       <a class="btn btn-secondary" href="https://www.linkedin.com/in/harshadgawade707" target="_blank">LinkedIn <i class="fa fa-linkedin" aria-hidden="true"></i></a>
     </div>
 
+    <!-- Contact form -->
     <div style="max-width:500px; margin:1.2rem auto; background:white; border-radius:40px; padding:1rem 1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.02);">
       <p style="font-weight:600; color:#2d2360;"><i class="fa fa-comment-o" aria-hidden="true"></i> Send a message</p>
       <form id="contactForm" onsubmit="return handleForm(event)">
@@ -878,6 +1004,16 @@
       return false;
     }
 
+    // Theme toggle
+    const themeBtn = document.querySelector('.theme-toggle');
+    const body = document.body;
+    themeBtn.addEventListener('click', function() {
+      body.classList.toggle('dark');
+      const pressed = body.classList.contains('dark');
+      themeBtn.setAttribute('aria-pressed', pressed);
+      const icon = themeBtn.querySelector('i');
+      icon.className = pressed ? 'fa fa-sun-o' : 'fa fa-moon-o';
+    });
 
     // Tabs
     const tabs = document.querySelectorAll('.tab');
@@ -906,20 +1042,39 @@
     // current year
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // Nav highlight on scroll
+    // Nav highlight + fade-in on scroll
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
-    window.addEventListener('scroll', () => {
+
+    const fadeElements = document.querySelectorAll('.fade-in');
+
+    function checkVisibility() {
+      // fade-in
+      fadeElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 80) {
+          el.classList.add('visible');
+        }
+      });
+
+      // nav highlight
       let current = '';
       sections.forEach(sec => {
-        const top = sec.offsetTop - 120;
+        const top = sec.offsetTop - 130;
         if (window.scrollY >= top) current = sec.getAttribute('id');
       });
       navLinks.forEach(link => {
-        link.style.color = link.getAttribute('href').slice(1) === current ? '#4a3f7a' : '';
-        link.style.fontWeight = link.getAttribute('href').slice(1) === current ? '700' : '500';
+        const href = link.getAttribute('href').slice(1);
+        if (href === current) {
+          link.classList.add('active-nav');
+        } else {
+          link.classList.remove('active-nav');
+        }
       });
-    });
+    }
+
+    window.addEventListener('scroll', checkVisibility);
+    window.addEventListener('load', checkVisibility);
   </script>
 </body>
 </html>
