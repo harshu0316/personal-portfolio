@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio of Harshad Gawade, an entry-level Java Full Stack Developer skilled in Spring Boot, REST APIs, JPA, Hibernate, MySQL, and React basics.">
+  <title>Harshad Gawade | Java Full Stack Developer</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="fevicon.io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="fevicon.io/favicon-16x16.png">
+  <link rel="stylesheet" href="PORT.CSS">
+  <script src="port.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="Harshad Gawade home">
+      <span class="brand-mark">HG</span>
+      <span>Harshad Gawade</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#about">Profile</a>
+      <a href="#skills">Stack</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
+      <i class="fa fa-moon-o" aria-hidden="true"></i>
+    </button>
+  </header>
+
+  <main>
+    <section class="hero section-band" id="home">
+      <div class="hero-copy-block">
+        <p class="eyebrow">Java Full Stack Developer</p>
+        <h1>Building Spring Boot REST APIs with clean backend architecture.</h1>
+        <p class="hero-copy">
+          Entry-level developer skilled in Core Java, OOP, Spring Boot, REST API
+          development, Spring Data JPA, Hibernate, MySQL, and React basics. I enjoy
+          creating practical web applications with clear layers, reliable database
+          operations, and testable API flows.
+        </p>
+
+        <div class="hero-actions" aria-label="Primary actions">
+          <a class="btn btn-primary" href="Gawade_Harshad_Resume.pdf">
+            Download Resume
+            <i class="fa fa-download" aria-hidden="true"></i>
+          </a>
+          <a class="btn btn-secondary" href="#projects">
+            View Backend Projects
+            <i class="fa fa-code" aria-hidden="true"></i>
+          </a>
+        </div>
+
+        <div class="contact-row" aria-label="Quick contact">
+          <a href="tel:+919404214920"><i class="fa fa-phone" aria-hidden="true"></i> +91 9404214920</a>
+          <a href="mailto:harshadgawade997@gmail.com"><i class="fa fa-envelope-o" aria-hidden="true"></i> harshadgawade997@gmail.com</a>
+          <span><i class="fa fa-map-marker" aria-hidden="true"></i> Hinjewadi Phase 1, Pune</span>
+        </div>
+      </div>
+
+      <aside class="hero-snapshot" aria-label="Resume snapshot">
+        <div class="terminal-top">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="code-window" aria-hidden="true">
+          <p><span class="token-blue">@SpringBootApplication</span></p>
+          <p><span class="token-green">class</span> HarshadPortfolio {</p>
+          <p>&nbsp;&nbsp;role = <span class="token-amber">"Java Full Stack Developer"</span>;</p>
+          <p>&nbsp;&nbsp;focus = <span class="token-amber">"REST APIs + MySQL"</span>;</p>
+          <p>&nbsp;&nbsp;practice = <span class="token-amber">"30+ LeetCode"</span>;</p>
+          <p>}</p>
+        </div>
+        <div class="snapshot-list">
+          <div>
+            <strong>8</strong>
+            <span>REST endpoints tested in Postman</span>
+          </div>
+          <div>
+            <strong>8.2</strong>
+            <span>BCA CGPA</span>
+          </div>
+          <div>
+            <strong>3</strong>
+            <span>resume-backed projects</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section-band profile-section" id="about">
+      <div class="section-heading">
+        <p class="eyebrow">Professional Summary</p>
+        <h2>Backend-focused, recruiter-ready, and project-proven.</h2>
+      </div>
+
+      <div class="profile-grid">
+        <article class="focus-card">
+          <i class="fa fa-sitemap" aria-hidden="true"></i>
+          <h3>Layered MVC Architecture</h3>
+          <p>Comfortable separating Entity, Repository, Service, and Controller layers for maintainable Spring Boot applications.</p>
+        </article>
+        <article class="focus-card">
+          <i class="fa fa-database" aria-hidden="true"></i>
+          <h3>Database Integration</h3>
+          <p>Hands-on experience with MySQL, H2 Database, CRUD operations, entity mapping, query methods, and JDBC basics.</p>
+        </article>
+        <article class="focus-card">
+          <i class="fa fa-shield" aria-hidden="true"></i>
+          <h3>Role-Based Concepts</h3>
+          <p>Built project flows involving admin, staff, customer, trainer, and member panels with authentication and access concepts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-band skills-section" id="skills">
+      <div class="section-heading">
+        <p class="eyebrow">Technical Stack</p>
+        <h2>Skills aligned with your updated resume.</h2>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Skill categories">
+        <button class="tab active" type="button" role="tab" aria-selected="true" aria-controls="java-panel" id="java-tab" data-tab="java-panel">Java Backend</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="database-panel" id="database-tab" data-tab="database-panel">Database & API</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="frontend-panel" id="frontend-tab" data-tab="frontend-panel">Frontend</button>
+        <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="tools-panel" id="tools-tab" data-tab="tools-panel">Tools & Concepts</button>
+      </div>
+
+      <div class="tab-panels">
+        <div class="tab-panel active" id="java-panel" role="tabpanel" aria-labelledby="java-tab">
+          <div class="skill-grid">
+            <span>Core Java</span>
+            <span>OOP</span>
+            <span>Exception Handling</span>
+            <span>Multithreading</span>
+            <span>Spring Boot</span>
+            <span>Spring MVC</span>
+            <span>Spring Framework</span>
+            <span>Spring Security Basics</span>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="database-panel" role="tabpanel" aria-labelledby="database-tab" hidden>
+          <div class="skill-grid">
+            <span>REST APIs</span>
+            <span>Spring Data JPA</span>
+            <span>Hibernate</span>
+            <span>MySQL</span>
+            <span>H2 Database</span>
+            <span>CRUD Operations</span>
+            <span>Entity Mapping</span>
+            <span>SQL</span>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="frontend-panel" role="tabpanel" aria-labelledby="frontend-tab" hidden>
+          <div class="skill-grid">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>React Basics</span>
+            <span>PHP</span>
+            <span>Thymeleaf</span>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="tools-panel" role="tabpanel" aria-labelledby="tools-tab" hidden>
+          <div class="skill-grid">
+            <span>Maven</span>
+            <span>Lombok</span>
+            <span>Postman</span>
+            <span>Git/GitHub</span>
+            <span>IntelliJ IDEA</span>
+            <span>JDBC</span>
+            <span>Qodana</span>
+            <span>Microservices Concepts</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-band experience-section" id="experience">
+      <div class="section-heading">
+        <p class="eyebrow">Experience</p>
+        <h2>Project-based Java development exposure.</h2>
+      </div>
+
+      <article class="experience-card">
+        <div class="experience-main">
+          <span class="date-pill">Nov 2025 - Feb 2026</span>
+          <h3>Java Developer Intern</h3>
+          <p class="company">Imperium Pvt. Ltd., Shivajinagar, Pune</p>
+          <p>
+            Worked on a Java web application using Thymeleaf, HTML, CSS, MySQL, and JDBC.
+            Assisted with backend logic, form handling, SQL queries, database operations,
+            workflow testing, debugging, and page functionality improvements.
+          </p>
+        </div>
+        <div class="experience-stack" aria-label="Internship tech stack">
+          <span>Java</span>
+          <span>Thymeleaf</span>
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>MySQL</span>
+          <span>JDBC</span>
+        </div>
+      </article>
+    </section>
+
+    <section class="section-band projects-section" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow">Featured Projects</p>
+        <h2>Resume-backed projects with real backend scope.</h2>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-visual quiz-visual" aria-hidden="true">
+            <i class="fa fa-question-circle-o"></i>
+            <span>/admin/login</span>
+            <span>/questions/create</span>
+            <span>/questions/update</span>
+            <span>/quiz/generate</span>
+            <span>/quiz/submit</span>
+            <span>language + difficulty</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span>Apr 2026</span>
+              <span>Java 17</span>
+              <span>Spring Boot 3.2</span>
+            </div>
+            <h3>Spring Boot Quiz Application</h3>
+            <p>
+              RESTful quiz application built with layered MVC architecture, MySQL database
+              integration, admin controls, configurable practice quizzes, answer validation,
+              and quiz scoring logic.
+            </p>
+            <ul>
+              <li>Created Entity, Repository, Service, and Controller layers.</li>
+              <li>Built endpoints for admin login, question creation, question updates, question retrieval, answer checking, and quiz submission.</li>
+              <li>Added quiz generation options to choose question count, practice language/category, and difficulty level.</li>
+              <li>Used JetBrains Qodana to improve code quality and maintainability.</li>
+            </ul>
+            <a class="project-link" href="https://github.com/harshu0316/BrainBuzz_QuizApp">
+              View Repository
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-visual business-visual" aria-hidden="true">
+            <i class="fa fa-briefcase"></i>
+            <span>Admin</span>
+            <span>Customer</span>
+            <span>Staff</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span>Dec 2025 - Feb 2026</span>
+              <span>Spring Security</span>
+              <span>MySQL</span>
+            </div>
+            <h3>Business Management System</h3>
+            <p>
+              Business operations system for bulk orders, product stock, user-wise orders,
+              and staff/customer workflows using Spring Boot, REST APIs, Spring Security, and MySQL.
+            </p>
+            <ul>
+              <li>Built backend CRUD APIs for core management workflows.</li>
+              <li>Implemented role-based access concepts for administrators, customers, and staff.</li>
+              <li>Used MySQL for persistent business data storage.</li>
+            </ul>
+            <a class="project-link" href="https://github.com/harshu0316/Business_Management_Project-updated">
+              View Repository
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-visual gym-visual" aria-hidden="true">
+            <i class="fa fa-heartbeat"></i>
+            <span>Members</span>
+            <span>Payments</span>
+            <span>Attendance</span>
+          </div>
+          <div class="project-body">
+            <div class="project-meta">
+              <span>Sep 2025 - Oct 2025</span>
+              <span>PHP</span>
+              <span>MySQL</span>
+            </div>
+            <h3>Gym Management System</h3>
+            <p>
+              Web application for gym operations including member registrations, membership
+              plans, payment tracking, attendance records, and trainer assignments.
+            </p>
+            <ul>
+              <li>Implemented separate login panels for admin, trainer, and member users.</li>
+              <li>Stored operational records in a MySQL-backed database.</li>
+              <li>Designed workflows around real gym management needs.</li>
+            </ul>
+            <a class="project-link" href="https://github.com/harshu0316/orca_gym-services">
+              View Repository
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section-band education-section" id="education">
+      <div class="section-heading">
+        <p class="eyebrow">Education & Growth</p>
+        <h2>Academic background plus continuous coding practice.</h2>
+      </div>
+
+      <div class="education-grid">
+        <article class="timeline-item">
+          <span>Jun 2023 - Apr 2026</span>
+          <h3>Bachelor of Computer Applications</h3>
+          <p>Dnyansagar Institute of Management and Research, Pune. CGPA: 8.2.</p>
+        </article>
+
+        <article class="timeline-item">
+          <span>May 2021 - Mar 2022</span>
+          <h3>H.S.C. (12th)</h3>
+          <p>Rani Parvati Devi High School and Junior College, Sawantwadi. Score: 63%.</p>
+        </article>
+
+        <article class="timeline-item">
+          <span>Jun 2019 - Mar 2020</span>
+          <h3>S.S.C. (10th)</h3>
+          <p>Choukul English School, Choukul, Sawantwadi. Score: 86%.</p>
+        </article>
+      </div>
+
+      <div class="growth-strip">
+        <div>
+          <strong>Java Intermediate</strong>
+          <span>SoloLearn certification</span>
+        </div>
+        <div>
+          <strong>SQL</strong>
+          <span>Great Learning certification</span>
+        </div>
+        <div>
+          <strong>30+ LeetCode</strong>
+          <span>coding practice problems solved</span>
+        </div>
+        <div>
+          <strong>Hackathons</strong>
+          <span>intercollegiate participation</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-band" id="contact">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2>Ready for Java developer opportunities.</h2>
+      <p>Open to entry-level Java Full Stack Developer roles, internships, and backend-focused project opportunities.</p>
+    </div>
+
+    <div class="footer-actions">
+      <a class="btn btn-primary" href="mailto:harshadgawade997@gmail.com">
+        Email Me
+        <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-secondary" href="https://github.com/harshu0316/">
+        GitHub
+        <i class="fa fa-github" aria-hidden="true"></i>
+      </a>
+      <a class="btn btn-secondary" href="https://www.linkedin.com/in/harshadgawade707">
+        LinkedIn
+        <i class="fa fa-linkedin" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    <p class="copyright">&copy; <span id="current-year">2026</span> Harshad Gawade. All rights reserved.</p>
+  </footer>
+</body>
+</html>
