@@ -8,10 +8,204 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="fevicon.io/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="fevicon.io/favicon-16x16.png" />
-  <link rel="stylesheet" href="PORT.CSS" />
-  <script src="port.js" defer></script>
   <style>
-    /* additional inline styles for new elements */
+    /* ----- reset & base ----- */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #faf9fc;
+      color: #1e1b2b;
+      line-height: 1.6;
+      padding: 1.5rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    a { color: #4a3f7a; text-decoration: none; transition: color 0.2s; }
+    a:hover { color: #2d2360; }
+
+    .section-band {
+      max-width: 1280px;
+      margin: 0 auto 4rem;
+      padding: 0 1rem;
+    }
+
+    /* ----- header / brand FIXED FOR MOBILE ----- */
+    .site-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1280px;
+      margin: 0 auto 2.5rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(74, 63, 122, 0.15);
+      gap: 0.3rem;
+    }
+    
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      color: inherit;
+      flex-shrink: 0;
+      min-width: auto;
+    }
+    
+    .brand-mark {
+      background: #4a3f7a;
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 40px;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+    
+    .brand-name {
+      white-space: nowrap;
+      display: inline-block;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 1.8rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* ----- MOBILE FIX: brand name always visible ----- */
+    @media (max-width: 768px) {
+      .site-header {
+        gap: 0.2rem;
+        padding: 0.3rem 0;
+      }
+      
+      .brand {
+        font-size: 0.95rem;
+        flex: 0 0 auto;
+        min-width: 0;
+      }
+      
+      .brand-name {
+        font-size: 0.8rem;
+        display: inline-block !important;
+        white-space: nowrap;
+      }
+      
+      .brand-mark {
+        font-size: 0.65rem;
+        padding: 0.1rem 0.45rem;
+      }
+      
+      .nav-links {
+        order: 3;
+        flex: 1 1 100%;
+        justify-content: center;
+        gap: 0.4rem;
+        padding-top: 0.2rem;
+      }
+      
+      .nav-links a {
+        font-size: 0.65rem;
+        padding: 0.15rem 0.3rem;
+        white-space: nowrap;
+      }
+      
+  
+    }
+
+    @media (max-width: 480px) {
+      .brand {
+        font-size: 0.8rem;
+      }
+      
+      .brand-name {
+        font-size: 0.7rem !important;
+      }
+      
+      .brand-mark {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.35rem;
+      }
+      
+      .nav-links a {
+        font-size: 0.55rem;
+        padding: 0.1rem 0.2rem;
+      }
+     
+    }
+
+    /* ----- buttons & cards ----- */
+    .btn {
+      display: inline-block;
+      padding: 0.7rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      border: 2px solid transparent;
+      transition: 0.2s;
+      cursor: default;
+      background: white;
+    }
+    .btn-primary {
+      background: #4a3f7a;
+      color: white;
+      border-color: #4a3f7a;
+    }
+    .btn-primary:hover { background: #2d2360; border-color: #2d2360; color: white; }
+    .btn-secondary {
+      background: transparent;
+      border-color: #4a3f7a;
+      color: #4a3f7a;
+    }
+    .btn-secondary:hover { background: #f0edf9; }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6b5f9c;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ----- hero ----- */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      background: white;
+      border-radius: 32px;
+      padding: 2.5rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+    }
+    .hero-copy-block h1 {
+      font-size: 2.6rem;
+      line-height: 1.2;
+      margin: 0.5rem 0 0.8rem;
+    }
+    .hero-copy {
+      font-size: 1.05rem;
+      color: #3a364a;
+      margin-bottom: 1.8rem;
+    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.5rem 0; }
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem;
+      font-size: 0.95rem;
+      background: #f6f4fb;
+      padding: 0.8rem 1.2rem;
+      border-radius: 60px;
+      margin-top: 1rem;
+    }
+    .contact-row i { margin-right: 0.3rem; }
+
     .hero-tagline {
       display: inline-block;
       background: rgba(74, 63, 122, 0.08);
@@ -23,6 +217,7 @@
       color: #4a3f7a;
       margin-bottom: 0.5rem;
     }
+
     .social-hero {
       display: flex;
       gap: 0.8rem;
@@ -41,10 +236,156 @@
       transition: 0.2s;
     }
     .social-hero a:hover { background: #4a3f7a; color: white; }
+
+    /* snapshot */
+    .hero-snapshot {
+      background: #1e1b2b;
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      color: #e4e0f0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+    .terminal-top {
+      display: flex;
+      gap: 0.4rem;
+    }
+    .terminal-top span {
+      width: 12px; height: 12px; border-radius: 50%;
+      background: #6b5f9c;
+      display: inline-block;
+    }
+    .terminal-top span:first-child { background: #ff6b6b; }
+    .terminal-top span:nth-child(2) { background: #feca57; }
+    .terminal-top span:last-child { background: #48dbfb; }
+    .code-window {
+      font-family: 'Menlo', monospace;
+      font-size: 0.9rem;
+      background: #12101e;
+      padding: 1rem;
+      border-radius: 16px;
+      line-height: 1.8;
+    }
+    .token-blue { color: #74b9ff; }
+    .token-green { color: #55efc4; }
+    .token-amber { color: #fdcb6e; }
+    .snapshot-list {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #3a364a;
+      padding-top: 1rem;
+    }
+    .snapshot-list div { text-align: center; }
+    .snapshot-list strong {
+      display: block;
+      font-size: 1.8rem;
+      color: white;
+    }
+    .snapshot-list span { font-size: 0.8rem; opacity: 0.7; }
+
+    /* profile cards */
+    .profile-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin: 2rem 0;
+    }
+    .focus-card {
+      background: white;
+      padding: 1.8rem;
+      border-radius: 28px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      transition: 0.2s;
+      border: 1px solid #f0edf9;
+    }
+    .focus-card i { font-size: 2rem; color: #4a3f7a; margin-bottom: 0.5rem; display: inline-block; }
+    .focus-card h3 { margin: 0.5rem 0; }
+
+    /* tabs */
+    .tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 2rem 0 1.5rem;
+    }
+    .tab {
+      background: #f0edf9;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.15s;
+      color: #2d2360;
+    }
+    .tab.active {
+      background: #4a3f7a;
+      color: white;
+    }
+    .tab-panels { background: white; padding: 1.8rem; border-radius: 28px; }
+    .skill-grid { display: flex; flex-wrap: wrap; gap: 0.8rem 1.8rem; }
+    .skill-grid span {
+      background: #f6f4fb;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.95rem;
+    }
+    .tab-panel[hidden] { display: none; }
+
+    /* experience */
+    .experience-card {
+      background: white;
+      border-radius: 28px;
+      padding: 2rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      border-left: 6px solid #4a3f7a;
+    }
+    .date-pill {
+      display: inline-block;
+      background: #4a3f7a;
+      color: white;
+      padding: 0.1rem 1.2rem;
+      border-radius: 60px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      margin-bottom: 0.5rem;
+    }
+    .experience-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-top: 1rem;
+    }
+    .experience-stack span {
+      background: #f0edf9;
+      padding: 0.1rem 1.2rem;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* projects */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .project-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.03);
+      transition: 0.2s;
+      border: 1px solid #f0edf9;
+    }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
     .project-screenshot {
       width: 100%;
       height: 140px;
-      background: #1e1b2b;
+      background: #2d2360;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -53,37 +394,45 @@
       border-radius: 12px 12px 0 0;
       background-size: cover;
       background-position: center;
-      background-color: #2d2360;
     }
     .project-screenshot i { font-size: 2.4rem; opacity: 0.6; }
-    .skill-hover {
-      position: relative;
-      cursor: default;
+    .project-body { padding: 1.5rem; }
+    .project-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem 1rem;
+      font-size: 0.8rem;
+      color: #6b5f9c;
+      margin-bottom: 0.6rem;
     }
-    .skill-hover .hover-detail {
-      display: none;
-      position: absolute;
-      background: #2d2360;
-      color: white;
-      padding: 0.2rem 0.8rem;
-      border-radius: 40px;
-      font-size: 0.7rem;
-      white-space: nowrap;
-      bottom: calc(100% + 6px);
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 10;
+    .project-body ul { margin: 0.8rem 0 1rem 1.2rem; font-size: 0.95rem; }
+    .project-link {
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
     }
-    .skill-hover:hover .hover-detail { display: block; }
-    .skill-hover .hover-detail::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border: 4px solid transparent;
-      border-top-color: #2d2360;
+
+    /* education */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
     }
+    .timeline-item { background: white; padding: 1.5rem; border-radius: 28px; border-left: 6px solid #4a3f7a; }
+    .timeline-item span:first-child { font-size: 0.8rem; color: #6b5f9c; font-weight: 600; display: block; }
+    .growth-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      background: #f6f4fb;
+      border-radius: 60px;
+      padding: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .growth-strip div { text-align: center; }
+
     .architecture-flow {
       display: flex;
       flex-wrap: wrap;
@@ -103,6 +452,24 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
     .architecture-flow i { color: #4a3f7a; }
+
+    /* footer */
+    .site-footer {
+      text-align: center;
+      border-top: 1px solid rgba(74, 63, 122, 0.1);
+      padding-top: 2.5rem;
+      margin-top: 3rem;
+    }
+    .footer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .copyright { opacity: 0.6; font-size: 0.85rem; margin-top: 1.5rem; }
+    .footer-built { font-size: 0.8rem; opacity: 0.5; margin-top: 0.5rem; }
+
     .back-to-top {
       position: fixed;
       bottom: 2rem;
@@ -123,27 +490,22 @@
       cursor: pointer;
       border: none;
     }
-    .back-to-top.visible { opacity: 1; visibility: visible; }
-    .back-to-top:hover { transform: translateY(-3px); }
-    .project-card { transition: 0.25s; }
-    .project-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.06); }
-    .footer-built {
-      font-size: 0.8rem;
-      opacity: 0.5;
-      margin-top: 0.5rem;
+
+    @media (max-width: 800px) {
+      .hero { grid-template-columns: 1fr; }
+      .profile-grid { grid-template-columns: 1fr; }
     }
-    .growth-strip a { color: #4a3f7a; font-weight: 500; }
-    .growth-strip a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <!-- Back to Top button -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top"><i class="fa fa-arrow-up"></i></button>
 
+  <!-- HEADER - FIXED FOR MOBILE -->
   <header class="site-header" id="top">
     <a class="brand" href="#home" aria-label="Harshad Gawade home">
       <span class="brand-mark">HG</span>
-      <span>Harshad Gawade</span>
+      <span class="brand-name">Harshad Gawade</span>
     </a>
     <nav class="nav-links" aria-label="Primary navigation">
       <a href="#about">About</a>
@@ -153,13 +515,10 @@
       <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="theme-toggle" type="button" aria-label="Switch theme" aria-pressed="false">
-      <i class="fa fa-moon-o" aria-hidden="true"></i>
-    </button>
   </header>
 
   <main>
-    <!-- HERO: tagline + strong headline + social icons + metrics -->
+    <!-- HERO -->
     <section class="hero section-band" id="home">
       <div class="hero-copy-block">
         <p class="hero-tagline"><i class="fa fa-bullhorn" aria-hidden="true"></i> Available for Java Developer | Spring Boot Developer | Backend Developer roles</p>
@@ -179,7 +538,6 @@
           </a>
         </div>
 
-        <!-- Social icons in hero -->
         <div class="social-hero">
           <a href="https://github.com/harshu0316/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i> GitHub</a>
           <a href="https://www.linkedin.com/in/harshadgawade707" target="_blank"><i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
@@ -192,7 +550,6 @@
           <span><i class="fa fa-map-marker" aria-hidden="true"></i> Hinjewadi Phase 1, Pune</span>
         </div>
 
-        <!-- recruiter metrics strip -->
         <div class="metrics-strip" style="display:flex; flex-wrap:wrap; gap:1.5rem 2.5rem; margin-top:1.2rem; padding:0.5rem 0; border-top:1px solid #e0dcee;">
           <div><strong style="color:#4a3f7a;">12+</strong> REST APIs built</div>
           <div><strong style="color:#4a3f7a;">JWT</strong> Authentication</div>
@@ -219,7 +576,7 @@
       </aside>
     </section>
 
-    <!-- ABOUT: concise + architecture diagram -->
+    <!-- ABOUT -->
     <section class="section-band profile-section" id="about">
       <div class="section-heading">
         <p class="eyebrow">About</p>
@@ -238,7 +595,6 @@
         </article>
       </div>
 
-      <!-- Architecture flow diagram -->
       <div class="architecture-flow">
         <span>Browser</span> <i class="fa fa-arrow-right"></i>
         <span>Controller</span> <i class="fa fa-arrow-right"></i>
@@ -255,7 +611,7 @@
       </div>
     </section>
 
-    <!-- SKILLS: with hover details -->
+    <!-- SKILLS -->
     <section class="section-band skills-section" id="skills">
       <div class="section-heading">
         <p class="eyebrow">Technical Skills</p>
@@ -271,65 +627,35 @@
       </div>
 
       <div class="tab-panels">
-        <!-- Languages -->
         <div class="tab-panel active" id="lang-panel" role="tabpanel" aria-labelledby="lang-tab">
           <div class="skill-grid">
-            <span class="skill-hover">Core Java <span class="hover-detail">Collections · OOP · Streams</span></span>
-            <span class="skill-hover">OOP <span class="hover-detail">Inheritance · Polymorphism · Encapsulation</span></span>
-            <span class="skill-hover">Exception Handling <span class="hover-detail">try-catch · custom exceptions</span></span>
-            <span class="skill-hover">Multithreading <span class="hover-detail">Thread · Runnable · synchronized</span></span>
-            <span class="skill-hover">SQL <span class="hover-detail">Joins · subqueries · aggregations</span></span>
+            <span>Core Java</span><span>OOP</span><span>Exception Handling</span><span>Multithreading</span><span>SQL</span>
           </div>
         </div>
-        <!-- Backend -->
         <div class="tab-panel" id="backend-panel" role="tabpanel" aria-labelledby="backend-tab" hidden>
           <div class="skill-grid">
-            <span class="skill-hover">Spring Boot <span class="hover-detail">Auto-config · starters · Actuator</span></span>
-            <span class="skill-hover">Spring MVC <span class="hover-detail">@Controller · @RequestMapping</span></span>
-            <span class="skill-hover">Spring Data JPA <span class="hover-detail">Repositories · Query methods</span></span>
-            <span class="skill-hover">Hibernate <span class="hover-detail">ORM · caching · relationships</span></span>
-            <span class="skill-hover">REST APIs <span class="hover-detail">@RestController · HTTP methods</span></span>
-            <span class="skill-hover">Spring Security (JWT) <span class="hover-detail">Authentication · Authorization</span></span>
-            <span class="skill-hover">JDBC <span class="hover-detail">Connection · Statement · ResultSet</span></span>
+            <span>Spring Boot</span><span>Spring MVC</span><span>Spring Data JPA</span><span>Hibernate</span><span>REST APIs</span><span>Spring Security (JWT)</span><span>JDBC</span>
           </div>
         </div>
-        <!-- Frontend -->
         <div class="tab-panel" id="frontend-panel" role="tabpanel" aria-labelledby="frontend-tab" hidden>
           <div class="skill-grid">
-            <span class="skill-hover">HTML <span class="hover-detail">Semantic elements · forms</span></span>
-            <span class="skill-hover">CSS <span class="hover-detail">Flexbox · Grid · animations</span></span>
-            <span class="skill-hover">JavaScript <span class="hover-detail">ES6 · DOM · fetch</span></span>
-            <span class="skill-hover">React Basics <span class="hover-detail">Components · props · state</span></span>
-            <span class="skill-hover">Thymeleaf <span class="hover-detail">Templates · expressions</span></span>
-            <span class="skill-hover">PHP <span class="hover-detail">Sessions · MySQLi</span></span>
+            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>React Basics</span><span>Thymeleaf</span><span>PHP</span>
           </div>
         </div>
-        <!-- Database -->
         <div class="tab-panel" id="db-panel" role="tabpanel" aria-labelledby="db-tab" hidden>
           <div class="skill-grid">
-            <span class="skill-hover">MySQL <span class="hover-detail">DDL · DML · indexing</span></span>
-            <span class="skill-hover">H2 Database <span class="hover-detail">In-memory · console</span></span>
-            <span class="skill-hover">CRUD Operations <span class="hover-detail">Create · Read · Update · Delete</span></span>
-            <span class="skill-hover">Entity Mapping <span class="hover-detail">@OneToMany · @ManyToOne</span></span>
-            <span class="skill-hover">Query Methods <span class="hover-detail">findBy · custom queries</span></span>
+            <span>MySQL</span><span>H2 Database</span><span>CRUD Operations</span><span>Entity Mapping</span><span>Query Methods</span>
           </div>
         </div>
-        <!-- Tools -->
         <div class="tab-panel" id="tools-panel" role="tabpanel" aria-labelledby="tools-tab" hidden>
           <div class="skill-grid">
-            <span class="skill-hover">Maven <span class="hover-detail">pom.xml · dependencies</span></span>
-            <span class="skill-hover">Lombok <span class="hover-detail">@Data · @Builder</span></span>
-            <span class="skill-hover">Postman <span class="hover-detail">API testing · collections</span></span>
-            <span class="skill-hover">Git/GitHub <span class="hover-detail">commits · branches · PRs</span></span>
-            <span class="skill-hover">IntelliJ IDEA <span class="hover-detail">Debug · refactor</span></span>
-            <span class="skill-hover">Qodana <span class="hover-detail">Code quality · inspections</span></span>
-            <span class="skill-hover">Microservices <span class="hover-detail">concepts · communication</span></span>
+            <span>Maven</span><span>Lombok</span><span>Postman</span><span>Git/GitHub</span><span>IntelliJ IDEA</span><span>Qodana</span><span>Microservices (concepts)</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EXPERIENCE: with achievements -->
+    <!-- EXPERIENCE -->
     <section class="section-band experience-section" id="experience">
       <div class="section-heading">
         <p class="eyebrow">Experience</p>
@@ -345,7 +671,6 @@
             Implemented backend logic, form handling, SQL queries, and database operations.
             Improved page functionality and debugged workflows across 5+ modules.
           </p>
-          <!-- achievements -->
           <div style="display:flex; flex-wrap:wrap; gap:0.8rem 1.8rem; margin-top:0.8rem; background:#f0edf9; padding:0.5rem 1.2rem; border-radius:60px;">
             <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> 12+ REST APIs</span>
             <span><i class="fa fa-check-circle" style="color:#4a3f7a;"></i> Layered MVC architecture</span>
@@ -359,7 +684,7 @@
       </article>
     </section>
 
-    <!-- PROJECTS: with screenshots (placeholders) + detailed technical info -->
+    <!-- PROJECTS -->
     <section class="section-band projects-section" id="projects">
       <div class="section-heading">
         <p class="eyebrow">Featured Projects</p>
@@ -367,7 +692,6 @@
       </div>
 
       <div class="project-grid">
-        <!-- Business Management System -->
         <article class="project-card">
           <div class="project-screenshot" style="background-image: url('https://via.placeholder.com/600x140/2d2360/8a7abf?text=Business+Management+System');">
             <i class="fa fa-briefcase" aria-hidden="true"></i>
@@ -390,7 +714,6 @@
           </div>
         </article>
 
-        <!-- Quiz Application -->
         <article class="project-card">
           <div class="project-screenshot" style="background-image: url('https://via.placeholder.com/600x140/2d2360/8a7abf?text=Quiz+Application');">
             <i class="fa fa-question-circle-o" aria-hidden="true"></i>
@@ -413,7 +736,6 @@
           </div>
         </article>
 
-        <!-- Gym Management System -->
         <article class="project-card">
           <div class="project-screenshot" style="background-image: url('https://via.placeholder.com/600x140/2d2360/8a7abf?text=Gym+Management');">
             <i class="fa fa-heartbeat" aria-hidden="true"></i>
@@ -437,7 +759,7 @@
       </div>
     </section>
 
-    <!-- EDUCATION + CERTIFICATIONS + CODING PROFILES + Currently Learning -->
+    <!-- EDUCATION -->
     <section class="section-band education-section" id="education">
       <div class="section-heading">
         <p class="eyebrow">Education &amp; Credentials</p>
@@ -450,7 +772,6 @@
         <article class="timeline-item"><span>Jun 2019 – Mar 2020</span><h3>S.S.C. (10th)</h3><p>Choukul English School, Sawantwadi. 86%</p></article>
       </div>
 
-      <!-- Currently Learning -->
       <div style="background:white; border-radius:28px; padding:1.2rem 1.8rem; margin:1.2rem 0; box-shadow:0 4px 12px rgba(0,0,0,0.02); border-left:6px solid #4a3f7a;">
         <p style="font-weight:600; color:#2d2360;"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Currently Learning</p>
         <div style="display:flex; flex-wrap:wrap; gap:0.5rem 1.8rem; margin-top:0.3rem;">
@@ -461,7 +782,6 @@
         </div>
       </div>
 
-      <!-- Certifications + Coding Profiles -->
       <div style="display:flex; flex-wrap:wrap; gap:1.2rem 2.5rem; justify-content:center; background:#f6f4fb; padding:1rem 1.5rem; border-radius:60px; margin:1.5rem 0;">
         <div><i class="fa fa-certificate" style="color:#4a3f7a; margin-right:0.4rem;"></i> <strong>Java Intermediate</strong> – SoloLearn</div>
         <div><i class="fa fa-certificate" style="color:#4a3f7a; margin-right:0.4rem;"></i> <strong>SQL</strong> – Great Learning</div>
@@ -469,14 +789,9 @@
         <div><i class="fa fa-trophy" style="color:#4a3f7a; margin-right:0.4rem;"></i> Hackathons (intercollegiate)</div>
       </div>
 
-      <!-- GitHub contribution heatmap (simulated) -->
       <div style="background:white; border-radius:28px; padding:1rem; box-shadow:0 4px 12px rgba(0,0,0,0.02);">
-        <p style="font-size:0.9rem; color:#4a3f7a; font-weight:600;"><i class="fa fa-github" aria-hidden="true"></i> GitHub Activity (simulated)</p>
+        <p style="font-size:0.9rem; color:#4a3f7a; font-weight:600;"><i class="fa fa-github" aria-hidden="true"></i> GitHub Activity</p>
         <div style="display:flex; gap:4px; flex-wrap:wrap; justify-content:center;">
-          <span style="display:inline-block; width:14px; height:14px; background:#d0c8e8; border-radius:3px;"></span>
-          <span style="display:inline-block; width:14px; height:14px; background:#b3a6d9; border-radius:3px;"></span>
-          <span style="display:inline-block; width:14px; height:14px; background:#8a7abf; border-radius:3px;"></span>
-          <span style="display:inline-block; width:14px; height:14px; background:#4a3f7a; border-radius:3px;"></span>
           <span style="display:inline-block; width:14px; height:14px; background:#d0c8e8; border-radius:3px;"></span>
           <span style="display:inline-block; width:14px; height:14px; background:#b3a6d9; border-radius:3px;"></span>
           <span style="display:inline-block; width:14px; height:14px; background:#8a7abf; border-radius:3px;"></span>
@@ -495,7 +810,7 @@
     </section>
   </main>
 
-  <!-- FOOTER: resume download, contact form, built with -->
+  <!-- FOOTER -->
   <footer class="site-footer section-band" id="contact">
     <div>
       <p class="eyebrow">Contact</p>
@@ -510,7 +825,6 @@
       <a class="btn btn-secondary" href="https://www.linkedin.com/in/harshadgawade707" target="_blank">LinkedIn <i class="fa fa-linkedin" aria-hidden="true"></i></a>
     </div>
 
-    <!-- Contact form with validation, loading, success message (simulated) -->
     <div style="max-width:500px; margin:1.2rem auto; background:white; border-radius:40px; padding:1rem 1.5rem; box-shadow:0 4px 12px rgba(0,0,0,0.02);">
       <p style="font-weight:600; color:#2d2360;"><i class="fa fa-comment-o" aria-hidden="true"></i> Send a message</p>
       <form id="contactForm" onsubmit="return handleForm(event)">
@@ -539,7 +853,7 @@
     });
     backBtn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 
-    // Contact form simulation
+    // Contact form
     function handleForm(e) {
       e.preventDefault();
       const email = document.getElementById('emailInput').value.trim();
@@ -551,7 +865,6 @@
         status.innerHTML = '<span style="color:#d9534f;">Please fill all fields.</span>';
         return false;
       }
-      // simulate sending
       btnText.style.display = 'none';
       spinner.style.display = 'inline';
       status.innerHTML = '';
@@ -565,16 +878,6 @@
       return false;
     }
 
-    // Theme toggle
-    const themeBtn = document.querySelector('.theme-toggle');
-    const body = document.body;
-    themeBtn.addEventListener('click', function() {
-      body.classList.toggle('dark');
-      const pressed = body.classList.contains('dark');
-      themeBtn.setAttribute('aria-pressed', pressed);
-      const icon = themeBtn.querySelector('i');
-      icon.className = pressed ? 'fa fa-sun-o' : 'fa fa-moon-o';
-    });
 
     // Tabs
     const tabs = document.querySelectorAll('.tab');
@@ -603,7 +906,7 @@
     // current year
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // Nav highlight on scroll (simple)
+    // Nav highlight on scroll
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-links a');
     window.addEventListener('scroll', () => {
